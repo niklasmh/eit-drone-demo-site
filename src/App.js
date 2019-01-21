@@ -1,7 +1,16 @@
 import React, { Component } from 'react'
 import './App.css'
 
+import Demo from './Demo'
+
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      showDemo: true,
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -27,7 +36,10 @@ class App extends Component {
         </ol>
 
         <h2 id="demo">Interaktiv demo av løsning</h2>
-        <button id="play">Start</button>
+        <a id="play" href="#map">
+          Start
+        </a>
+        {this.state.showDemo ? <Demo /> : null}
 
         <h2 id="description">
           Beskrivelse av problemet med effektivitet i akutt
