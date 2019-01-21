@@ -9,6 +9,14 @@ import {
 } from 'react-google-maps'
 import './Demo.css'
 
+/**
+ * TODO:
+ *
+ * - [x] Telle ned droner som er ferdig
+ * - [ ] Logo
+ * - [ ] Gjøre at ambulanse kjøres for å ta resten
+ */
+
 const DemoMap = withScriptjs(
   withGoogleMap(props => (
     <GoogleMap
@@ -65,8 +73,8 @@ export default class Demo extends Component {
       ],
     }
     this.timeInterval = 100
-    this.maxAmbulances = 6
-    this.maxDronesPerStation = 3
+    this.maxAmbulances = 1
+    this.maxDronesPerStation = 1
     this.speedup = 10
     this.ambulanceSpeed = 200 * this.speedup
     this.droneSpeed = 80 * this.speedup
@@ -152,7 +160,7 @@ export default class Demo extends Component {
       const stations = this.state.stations.slice(0)
       if (~stationIndex) stations[stationIndex].drones++
       situations.push({
-        path: [],
+        path: null,
         position,
         time: 0,
         done: false,
@@ -191,10 +199,17 @@ export default class Demo extends Component {
 
   componentDidMount() {
     setInterval(() => {
+      const stations = this.state.stations
       const situations = this.state.situations
         .map(e => {
           const direction = e.done ? -1 : 1
           const droneDirection = e.drone.done ? -1 : 1
+          const droneOnStart =
+            e.drone.done &&
+            ((e.drone.time / 1000) * this.droneSpeed) / 3.6 / e.drone.dist <= 0
+          if (~e.drone.station && droneOnStart) {
+            stations[e.drone.station].drones--
+          }
           return {
             ...e,
             time:
@@ -212,14 +227,7 @@ export default class Demo extends Component {
                   3.6 /
                   e.drone.dist >=
                   1,
-              station:
-                e.drone.done &&
-                ((e.drone.time / 1000) * this.droneSpeed) /
-                  3.6 /
-                  e.drone.dist <=
-                  0
-                  ? -1
-                  : e.drone.station,
+              station: droneOnStart ? -1 : e.drone.station,
             },
             done:
               e.done ||
@@ -241,7 +249,7 @@ export default class Demo extends Component {
               )
             : ~e.drone.station,
         )
-      this.setState({ ...this.state, situations })
+      this.setState({ ...this.state, situations, stations })
     }, this.timeInterval)
   }
 
@@ -251,7 +259,7 @@ export default class Demo extends Component {
     })
 
     const paths = this.state.situations
-      .filter(e => !e.done)
+      .filter(e => !e.done && e.path !== null)
       .map((e, i) => (
         <DirectionsRenderer
           directions={e.path}
@@ -329,7 +337,9 @@ export default class Demo extends Component {
     return (
       <div id="map">
         <span>
-          Ambulanser ledig: {this.maxAmbulances - this.state.situations.length}{' '}
+          Ambulanser ledig:{' '}
+          {this.maxAmbulances -
+            this.state.situations.filter(s => ~s.totalDistance).length}{' '}
           / {this.maxAmbulances}
         </span>
         <DemoMap
