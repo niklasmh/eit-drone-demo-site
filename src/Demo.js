@@ -13,8 +13,11 @@ import './Demo.css'
  * TODO:
  *
  * - [x] Telle ned droner som er ferdig
- * - [ ] Logo
- * - [ ] Gjøre at ambulanse kjøres for å ta resten
+ * - [x] Logo
+ * - [x] Støtte 2 typer;
+ *    - [x] heroin: bare drone,
+ *    - [x] infarkt: ambulanse og drone (om kjappest)
+ * - [x] Gjøre at ambulanse kjøres for å ta resten av de som venter
  */
 
 const DemoMap = withScriptjs(
@@ -71,10 +74,11 @@ export default class Demo extends Component {
         { drones: 0, lat: 63.4302508, lng: 10.3935385 },
         { drones: 0, lat: 63.4306683, lng: 10.39621 },
       ],
+      type: 'stroke',
     }
     this.timeInterval = 100
-    this.maxAmbulances = 1
-    this.maxDronesPerStation = 1
+    this.maxAmbulances = 2
+    this.maxDronesPerStation = 3
     this.speedup = 10
     this.ambulanceSpeed = 200 * this.speedup
     this.droneSpeed = 80 * this.speedup
@@ -98,8 +102,19 @@ export default class Demo extends Component {
     this.typeIcons = {
       heroin: {
         url: 'https://static.thenounproject.com/png/641158-200.png',
-        anchor: { x: 10, y: 10 },
-        scaledSize: { width: 20, height: 20 },
+        anchor: { x: 15, y: 15 },
+        scaledSize: { width: 30, height: 30 },
+      },
+      stroke: {
+        url: 'https://static.thenounproject.com/png/893753-200.png',
+        anchor: { x: 15, y: 15 },
+        scaledSize: { width: 30, height: 30 },
+      },
+      strokeFixed: {
+        url:
+          'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Person_icon_BLACK-01.svg/2000px-Person_icon_BLACK-01.svg.png',
+        anchor: { x: 15, y: 25 },
+        scaledSize: { width: 30, height: 30 },
       },
     }
   }
@@ -110,7 +125,7 @@ export default class Demo extends Component {
     const position = { lat, lng }
     this.setState({ ...this.state, selectedPoint: position })
 
-    if (this.state.situations.length < this.maxAmbulances) {
+    if (this.state.type === 'stroke') {
       const DirectionsService = new window.google.maps.DirectionsService()
       DirectionsService.route(
         {
@@ -136,6 +151,10 @@ export default class Demo extends Component {
               position,
               time: 0,
               done: false,
+              waitForAmbulance:
+                this.state.situations.filter(
+                  s => ~s.totalDistance && !s.waitForAmbulance,
+                ).length >= this.maxAmbulances,
               drone: {
                 station: stationIndex,
                 dist: stationDist,
@@ -146,7 +165,7 @@ export default class Demo extends Component {
               totalDistance: path.routes[0].legs[0].distance.value,
               totalDuration: path.routes[0].legs[0].duration.value,
               pointsInPath: path.routes[0].overview_path.length,
-              type: 'heroin',
+              type: this.state.type,
             })
             this.setState({ ...this.state, situations })
           }
@@ -164,6 +183,7 @@ export default class Demo extends Component {
         position,
         time: 0,
         done: false,
+        waitForAmbulance: false,
         drone: {
           station: stationIndex,
           dist: stationDist,
@@ -174,7 +194,7 @@ export default class Demo extends Component {
         totalDistance: -1,
         totalDuration: -1,
         pointsInPath: 0,
-        type: 'heroin',
+        type: this.state.type,
       })
       this.setState({ ...this.state, situations })
     }
@@ -200,7 +220,20 @@ export default class Demo extends Component {
   componentDidMount() {
     setInterval(() => {
       const stations = this.state.stations
+      let ambulancesNotUsed =
+        this.maxAmbulances -
+        this.state.situations.filter(
+          s => ~s.totalDistance && !s.waitForAmbulance,
+        ).length
       const situations = this.state.situations
+        .map(e => {
+          const doneWaiting = e.waitForAmbulance && ambulancesNotUsed > 0
+          if (doneWaiting) ambulancesNotUsed--
+          return {
+            ...e,
+            waitForAmbulance: e.waitForAmbulance && !doneWaiting,
+          }
+        })
         .map(e => {
           const direction = e.done ? -1 : 1
           const droneDirection = e.drone.done ? -1 : 1
@@ -214,7 +247,10 @@ export default class Demo extends Component {
             ...e,
             time:
               e.time +
-              this.timeInterval * direction * (~e.totalDistance ? 1 : 0),
+              this.timeInterval *
+                direction *
+                (~e.totalDistance ? 1 : 0) *
+                (e.waitForAmbulance ? 0 : 1),
             drone: {
               ...e.drone,
               time:
@@ -247,10 +283,14 @@ export default class Demo extends Component {
                   e.totalDistance <=
                   0
               )
-            : ~e.drone.station,
+            : ~e.drone.station || e.waitForAmbulance,
         )
       this.setState({ ...this.state, situations, stations })
     }, this.timeInterval)
+  }
+
+  handleRadioSelect(type) {
+    this.setState({ ...this.state, type })
   }
 
   render() {
@@ -278,14 +318,20 @@ export default class Demo extends Component {
       ))
 
     const persons = this.state.situations
-      .filter(e => !e.done)
-      .map((e, i) => (
-        <Marker
-          key={i}
-          position={e.position}
-          defaultIcon={this.typeIcons[e.type]}
-        />
-      ))
+      .filter(
+        e =>
+          (e.type === 'stroke' && (e.waitForAmbulance || !e.done)) ||
+          (e.type === 'heroin' && !e.drone.done),
+      )
+      .map((e, i) => {
+        let icon = e.type
+        if (e.type === 'stroke' && e.drone.done) {
+          icon = 'strokeFixed'
+        }
+        return (
+          <Marker key={i} position={e.position} icon={this.typeIcons[icon]} />
+        )
+      })
 
     const ambulances = this.state.situations
       .filter(e => ~e.totalDistance)
@@ -339,9 +385,27 @@ export default class Demo extends Component {
         <span>
           Ambulanser ledig:{' '}
           {this.maxAmbulances -
-            this.state.situations.filter(s => ~s.totalDistance).length}{' '}
+            this.state.situations.filter(
+              s => ~s.totalDistance && !s.waitForAmbulance,
+            ).length}{' '}
           / {this.maxAmbulances}
         </span>
+        <span>Situasjoner: {this.state.situations.length}</span>
+        <input
+          type="radio"
+          name="type"
+          defaultChecked={true}
+          id="stroke"
+          onChange={() => this.handleRadioSelect('stroke')}
+        />
+        <label htmlFor="stroke">Hjerteinfarkt</label>
+        <input
+          type="radio"
+          name="type"
+          id="heroin"
+          onChange={() => this.handleRadioSelect('heroin')}
+        />
+        <label htmlFor="heroin">Heroinoverdose</label>
         <DemoMap
           markers={markers}
           paths={paths}
