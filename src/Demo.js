@@ -405,7 +405,7 @@ export default class Demo extends Component {
             id="heroin"
             onChange={() => this.handleRadioSelect('heroin')}
           />
-          <label htmlFor="heroin">Heroinoverdose</label>
+          <label htmlFor="heroin">Heroinoverdose (Opioidoverdose)</label>
         </div>
         <DemoMap
           markers={markers}

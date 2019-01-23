@@ -6,6 +6,7 @@ import Demo from './Demo'
 import Page from './Page'
 import Jump from './Jump'
 import Tabs from './Tabs'
+import FadeInBlock from './FadeInBlock'
 
 class App extends Component {
   constructor(props) {
@@ -85,8 +86,49 @@ class App extends Component {
         </Page>
 
         <Page color="white" page="tidslinje" ref={this.refPage}>
-          <h2>Om oss</h2>
-          <p />
+          <h2 className="no-bottom">Droner i behandling av</h2>
+          <h1 className="no-top no-bottom">Opioidoverdoser</h1>
+          <p>Pårørende oppdager en overdose</p>
+          <FadeInBlock side="right" title="Symptomer">
+            Opioidoverdoser kjennetegnes av nedsatt bevissthet og nedsatt
+            respirasjon
+          </FadeInBlock>
+          <FadeInBlock side="left" title="En livstruende tilstand">
+            Ved en overdose med opioider slutter pasienten å puste
+          </FadeInBlock>
+          <FadeInBlock side="right" title="263 overdosedødsfall i året">
+            I Norge dør det i snitt 263 personer av overdoser hvert år
+          </FadeInBlock>
+        </Page>
+
+        <Page color="white" page="tidslinje-2" ref={this.refPage}>
+          <h2 className="no-bottom">Pårørende ringer</h2>
+          <h1 className="no-top no-bottom">113</h1>
+          <FadeInBlock side="left" title="Dronepilot">
+            En dronepilot styrer dronen til rett sted
+          </FadeInBlock>
+          <FadeInBlock side="right" title="Responstid på to minutter" />
+          <FadeInBlock side="left" title="Droneplassering">
+            En drone per apotek er mer enn nok til å dekke hele Trondheim
+          </FadeInBlock>
+        </Page>
+
+        <Page color="white" page="tidslinje-3" ref={this.refPage}>
+          <h1>Dronen ankommer ulykkesstedet</h1>
+          <FadeInBlock
+            side="left"
+            title="Kommunikasjonsutstyr og videokamera"
+          />
+          <FadeInBlock side="right" title="Vurdering av pasientens tilstand" />
+          <FadeInBlock
+            side="left"
+            title="Administrering av motgiften NACRAN©"
+          />
+          <FadeInBlock side="right" title="Effekt av motgift" />
+        </Page>
+
+        <Page color="white" page="tidslinje-4" ref={this.refPage}>
+          <h1>Hva skjer videre med pasienten?</h1>
         </Page>
 
         <Page

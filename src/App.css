@@ -11,3 +11,11 @@
   width: 20vw;
   max-width: 200px;
 }
+.no-bottom {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.no-top {
+  padding-top: 0;
+  margin-top: 0;
+}

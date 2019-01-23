@@ -1,0 +1,10 @@
+.FadeInBlock {
+  max-width: 30vw;
+  margin: 16px;
+}
+
+.FadeInBlock > h3,
+.FadeInBlock > p {
+  margin: 0;
+  padding: 0;
+}
