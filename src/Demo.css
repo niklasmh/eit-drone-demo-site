@@ -1,4 +1,7 @@
 .Demo {
+  padding-top: 60px;
+  flex: 1 0 auto;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
+  width: 100%;
 }

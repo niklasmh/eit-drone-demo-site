@@ -77,7 +77,7 @@ export default class Demo extends Component {
       type: 'stroke',
     }
     this.timeInterval = 100
-    this.maxAmbulances = 2
+    this.maxAmbulances = 10
     this.maxDronesPerStation = 3
     this.speedup = 10
     this.ambulanceSpeed = 200 * this.speedup
@@ -381,31 +381,32 @@ export default class Demo extends Component {
       })
 
     return (
-      <div id="map">
-        <span>
-          Ambulanser ledig:{' '}
-          {this.maxAmbulances -
-            this.state.situations.filter(
-              s => ~s.totalDistance && !s.waitForAmbulance,
-            ).length}{' '}
-          / {this.maxAmbulances}
-        </span>
-        <span>Situasjoner: {this.state.situations.length}</span>
-        <input
-          type="radio"
-          name="type"
-          defaultChecked={true}
-          id="stroke"
-          onChange={() => this.handleRadioSelect('stroke')}
-        />
-        <label htmlFor="stroke">Hjerteinfarkt</label>
-        <input
-          type="radio"
-          name="type"
-          id="heroin"
-          onChange={() => this.handleRadioSelect('heroin')}
-        />
-        <label htmlFor="heroin">Heroinoverdose</label>
+      <div className="Demo">
+        <div>
+          <span>
+            Ambulanser ledig:{' '}
+            {this.maxAmbulances -
+              this.state.situations.filter(
+                s => ~s.totalDistance && !s.waitForAmbulance,
+              ).length}{' '}
+            / {this.maxAmbulances}
+          </span>
+          <input
+            type="radio"
+            name="type"
+            defaultChecked={true}
+            id="stroke"
+            onChange={() => this.handleRadioSelect('stroke')}
+          />
+          <label htmlFor="stroke">Hjerteinfarkt</label>
+          <input
+            type="radio"
+            name="type"
+            id="heroin"
+            onChange={() => this.handleRadioSelect('heroin')}
+          />
+          <label htmlFor="heroin">Heroinoverdose</label>
+        </div>
         <DemoMap
           markers={markers}
           paths={paths}
@@ -418,8 +419,16 @@ export default class Demo extends Component {
           onClick={this.onClick.bind(this)}
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_QcAdoHfUZgyxnB66tYyRUm6yF759J_o&v=3.exp&libraries=geometry,drawing,places"
           loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `100vh` }} />}
-          mapElement={<div style={{ height: `100%` }} />}
+          containerElement={
+            <div
+              style={{
+                flex: '1 0 420px',
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            />
+          }
+          mapElement={<div style={{ height: `100%`, flex: '1 0 420px' }} />}
         />
       </div>
     )

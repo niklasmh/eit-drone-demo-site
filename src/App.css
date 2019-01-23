@@ -1,0 +1,13 @@
+.logo {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+.logo > .name {
+  font-size: 6em;
+  color: #363636;
+}
+.logo > .image {
+  width: 20vw;
+  max-width: 200px;
+}

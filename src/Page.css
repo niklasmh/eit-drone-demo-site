@@ -1,0 +1,42 @@
+.Page {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 2em;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.Page:first-child {
+  margin-bottom: -60px;
+  padding-bottom: calc(60px + 10vh);
+}
+
+.Page:nth-child(1) {
+  background-color: #71c9ec;
+}
+.Page:nth-child(3) {
+  background-color: #fd6e63;
+}
+.Page:nth-child(4) {
+  background-color: #7aff62;
+}
+.Page:nth-child(5) {
+  background-color: #7acbc5;
+}
+.Page:nth-child(6) {
+  background-color: #62ffed;
+}
+.Page:nth-child(7) {
+  background-color: #6262ff;
+}
+.Page:nth-child(8) {
+  background-color: #ffce64;
+}
+.Page:nth-child(9) {
+  background-color: #ffb862;
+}
+.Page:nth-child(10) {
+  background-color: #ff62ff;
+}
