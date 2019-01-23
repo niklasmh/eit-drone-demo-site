@@ -103,7 +103,7 @@ class App extends Component {
 
         <Page color="white" page="tidslinje-2" ref={this.refPage}>
           <h2 className="no-bottom">Pårørende ringer</h2>
-          <h1 className="no-top no-bottom">113</h1>
+          <h1 className="no-top no-bottom big">113</h1>
           <FadeInBlock side="left" title="Dronepilot">
             En dronepilot styrer dronen til rett sted
           </FadeInBlock>
