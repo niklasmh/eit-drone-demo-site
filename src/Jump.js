@@ -5,7 +5,7 @@ export default class Jump extends Component {
     return (
       <a
         {...this.props}
-        className="Jump"
+        className={`Jump${this.props.selected ? ' selected' : ''}`}
         href={`#${this.props.to}`}
         onClick={() => this.props.onClick(this.props.to)}
       >

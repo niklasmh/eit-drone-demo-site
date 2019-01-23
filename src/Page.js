@@ -7,7 +7,12 @@ export default class Page extends Component {
       color: this.props.color || 'white',
     })
     return (
-      <div className={`Page ${this.props.page}`} style={style} {...this.props}>
+      <div
+        className={`Page ${this.props.page}`}
+        ref={e => this.props.refCallback(e)}
+        style={style}
+        page={this.props.page}
+      >
         {this.props.children}
       </div>
     )

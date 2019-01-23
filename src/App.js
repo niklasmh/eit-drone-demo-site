@@ -13,14 +13,27 @@ class App extends Component {
     super(props)
     this.state = {
       showDemo: true,
+      selected: 'hjem',
     }
+    this.pagePositions = {}
     this.pages = {}
-    this.refPage = page => {
-      this.pages[page.props.page] = page
+    this.refPage = this.refPage.bind(this)
+    this.hasMounted = false
+  }
+
+  refPage(page) {
+    if (page !== null) {
+      const { top } = page.getBoundingClientRect()
+      const id = page.getAttribute('page')
+      this.pagePositions[id] = top + document.documentElement.scrollTop
+      this.pages[id] = page
     }
   }
 
   componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll.bind(this))
+    this.hasMounted = true
+
     if (window.location.hash) {
       setTimeout(() => {
         scrollToComponent(this.pages[window.location.hash.slice(1)], {
@@ -29,6 +42,26 @@ class App extends Component {
           duration: 0,
         })
       }, 1000)
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll.bind(this))
+  }
+
+  handleScroll() {
+    const y = window.scrollY + 60
+    let prevPage = this.state.selected
+    let currentPage = this.state.selected
+    for (const key in this.pagePositions) {
+      if (this.pagePositions[key] > y) {
+        break
+      }
+      currentPage = key
+    }
+    if (prevPage !== currentPage) {
+      window.location.href = '#' + currentPage
+      this.setState({ ...this.state, selected: currentPage })
     }
   }
 
@@ -44,7 +77,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Page color="white" page="tittel" ref={this.refPage}>
+        <Page color="white" page="hjem" refCallback={this.refPage}>
           <div className="logo">
             <h1 className="name">eDrone</h1>
             <img
@@ -61,27 +94,43 @@ class App extends Component {
         </Page>
 
         <Tabs>
-          <Jump to="edrone" onClick={this.scroll.bind(this)}>
+          <Jump
+            to="edrone"
+            selected={this.state.selected === 'edrone'}
+            onClick={this.scroll.bind(this)}
+          >
             Hva er eDrone?
           </Jump>
-          <Jump to="om" onClick={this.scroll.bind(this)}>
-            Om oss
+          <Jump
+            to="om"
+            selected={this.state.selected === 'om'}
+            onClick={this.scroll.bind(this)}
+          >
+            Menneskene bak
           </Jump>
-          <Jump to="tidslinje" onClick={this.scroll.bind(this)}>
+          <Jump
+            to="tidslinje"
+            selected={this.state.selected.slice(0, 9) === 'tidslinje'}
+            onClick={this.scroll.bind(this)}
+          >
             Hva kan eDrone gjøre?
           </Jump>
-          <Jump to="demo" onClick={this.scroll.bind(this)}>
+          <Jump
+            to="demo"
+            selected={this.state.selected === 'demo'}
+            onClick={this.scroll.bind(this)}
+          >
             Interaktiv demo
           </Jump>
         </Tabs>
 
-        <Page color="white" page="edrone" ref={this.refPage}>
+        <Page color="white" page="edrone" refCallback={this.refPage}>
           <h2>Hva er eDrone?</h2>
           <p>asdasdasd</p>
         </Page>
 
-        <Page color="white" page="om" ref={this.refPage}>
-          <h2>Om oss</h2>
+        <Page color="white" page="om" refCallback={this.refPage}>
+          <h2>Menneskene bak</h2>
           <h3 className="no-bottom">Andrea Lilleeidet Røyland </h3>
           <p className="no-top">Medisin</p>
           <h3 className="no-bottom">Ingrid Andrea Legran</h3>
@@ -96,7 +145,7 @@ class App extends Component {
           <p className="no-top">Industriell økonomi og teknologiledelse</p>
         </Page>
 
-        <Page color="white" page="tidslinje" ref={this.refPage}>
+        <Page color="white" page="tidslinje" refCallback={this.refPage}>
           <h2 className="no-bottom">Droner i behandling av</h2>
           <h1 className="no-top no-bottom">Opioidoverdoser</h1>
           <p>Pårørende oppdager en overdose</p>
@@ -112,7 +161,7 @@ class App extends Component {
           </FadeInBlock>
         </Page>
 
-        <Page color="white" page="tidslinje-2" ref={this.refPage}>
+        <Page color="white" page="tidslinje-2" refCallback={this.refPage}>
           <h2 className="no-bottom">Pårørende ringer</h2>
           <h1 className="no-top no-bottom big">113</h1>
           <FadeInBlock side="left" title="Dronepilot">
@@ -124,7 +173,7 @@ class App extends Component {
           </FadeInBlock>
         </Page>
 
-        <Page color="white" page="tidslinje-3" ref={this.refPage}>
+        <Page color="white" page="tidslinje-3" refCallback={this.refPage}>
           <h1>Dronen ankommer ulykkesstedet</h1>
           <FadeInBlock
             side="left"
@@ -138,14 +187,14 @@ class App extends Component {
           <FadeInBlock side="right" title="Effekt av motgift" />
         </Page>
 
-        <Page color="white" page="tidslinje-4" ref={this.refPage}>
+        <Page color="white" page="tidslinje-4" refCallback={this.refPage}>
           <h1>Hva skjer videre med pasienten?</h1>
         </Page>
 
         <Page
           color="white"
           page="demo"
-          ref={this.refPage}
+          refCallback={this.refPage}
           style={{ padding: '0' }}
         >
           {this.state.showDemo ? <Demo /> : null}
