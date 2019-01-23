@@ -82,7 +82,18 @@ class App extends Component {
 
         <Page color="white" page="om" ref={this.refPage}>
           <h2>Om oss</h2>
-          <p />
+          <h3 className="no-bottom">Andrea Lilleeidet Røyland </h3>
+          <p className="no-top">Medisin</p>
+          <h3 className="no-bottom">Ingrid Andrea Legran</h3>
+          <p className="no-top">Arbeids- og organisasjonspsykologi</p>
+          <h3 className="no-bottom">Nana Aanderaa</h3>
+          <p className="no-top">Medisin</p>
+          <h3 className="no-bottom">Niklas Molnes Hole </h3>
+          <p className="no-top">Informatikk</p>
+          <h3 className="no-bottom">Paul-Alexandre Nordlund</h3>
+          <p className="no-top">Medisin</p>
+          <h3 className="no-bottom">Åsmund Heir</h3>
+          <p className="no-top">Industriell økonomi og teknologiledelse</p>
         </Page>
 
         <Page color="white" page="tidslinje" ref={this.refPage}>
