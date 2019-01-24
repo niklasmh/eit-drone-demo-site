@@ -1,7 +1,7 @@
 .Page {
   min-height: 100vh;
   box-sizing: border-box;
-  padding: 2em calc(50vw - 960px / 2 + 2em);
+  padding: calc(60px + 2em) calc(50vw - 960px / 2 + 2em) 2em;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
@@ -48,6 +48,14 @@
 }
 .Page:nth-child(10) {
   background-color: #fd6e63;
+}
+
+.Page[page^='edrone'] {
+  background-color: #fd6e63;
+  justify-content: center;
+}
+.Page[page^='edrone'] > .FadeInBlock {
+  flex: 0 0 auto;
 }
 
 .Page.tidslinje {

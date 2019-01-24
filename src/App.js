@@ -138,8 +138,38 @@ class App extends Component {
         </Tabs>
 
         <Page color="white" page="edrone" refCallback={this.refPage}>
-          <h2>Hva er eDrone?</h2>
-          <p>asdasdasd</p>
+          <FadeInBlock side="left">
+            <h1>Møt eDrone</h1>
+            <h3>- fremtidens akuttmottak</h3>
+            <p>
+              Akuttmottak verden over sliter med manglende kapasitet til å
+              håndtere økt etterspørsel etter helsehjelp. Edrone flytter
+              akuttmottaket ut av sykehuset til deg raskt, effektivt og trygt.
+            </p>
+          </FadeInBlock>
+        </Page>
+
+        <Page color="white" page="edrone-2" refCallback={this.refPage}>
+          <FadeInBlock side="left">
+            <h2>Allsidig</h2>
+            <p>
+              Edrone er konstruert for å kunne behandle en rekke sykdommer og
+              tilstander. Edrone er utstyrt med viktig medisinsk utstyr som gir
+              helsepersonell viktig informasjon om pasientens helsetilstand.
+              Edrone kan brukes til diagnotiskk og behandling av blant annet
+              hjertestans og overdoser.
+            </p>
+          </FadeInBlock>
+        </Page>
+
+        <Page color="white" page="edrone-2" refCallback={this.refPage}>
+          <FadeInBlock side="left">
+            <h2>Rask, effektiv og trygg</h2>
+            <p>
+              Edrone kan oppnå hastigheter opp mot 160 km/t. Det betyr at dronen
+              kan nå deg innen minutter etter du ringt 113.
+            </p>
+          </FadeInBlock>
         </Page>
 
         <Page color="white" page="om" refCallback={this.refPage}>
