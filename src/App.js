@@ -98,6 +98,8 @@ class App extends Component {
       case 37: // Left
         this.nextPage(-1)
         break
+      default:
+        break
     }
   }
 
