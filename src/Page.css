@@ -25,12 +25,14 @@
 
 .Page:nth-child(1) {
   background-color: #71c9ec;
+  text-align: center;
 }
 .Page:nth-child(3) {
   background-color: #7aaa62;
 }
 .Page:nth-child(4) {
   background-color: #ffce64;
+  text-align: center;
 }
 .Page:nth-child(5) {
   background-color: #ff62ff;
@@ -139,6 +141,10 @@
   }
   .Page.tidslinje-3 {
     background-position: center 80%, center center;
+  }
+  .Page.Page.tidslinje-3 .FadeInBlock:nth-child(4) {
+    background-image: none;
+    padding-right: 0;
   }
   .Page[page^='edrone'] {
     background-position: 75% center;

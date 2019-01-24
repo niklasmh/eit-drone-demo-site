@@ -5,7 +5,7 @@ import './FadeInBlock.css'
 export default class FadeInBlock extends Component {
   render() {
     const fadeIn = {
-      from: 'middle-bottom',
+      from: 'top-bottom',
       to: 'top-middle',
       direct: true,
       props: {

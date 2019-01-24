@@ -123,6 +123,15 @@ class App extends Component {
           <p>
             Dette er en alternativ presentasjonsform i EiT fra gruppe 5 i
             landsbyen for Fremtidens Smarte Sykehus.
+            <br />
+            <br />
+            Artikkel:{' '}
+            <a
+              target="_blank"
+              href="Artikkel - Bruk av droner for å forhindre dødsfall og skader av overdose.pdf"
+            >
+              Bruk av droner for å forhindre dødsfall og skader av overdose
+            </a>
           </p>
         </Page>
 
@@ -308,7 +317,7 @@ class App extends Component {
               Nesesprayen virker raskt og flesteparten vil få tilbake
               respirasjon etter noen minutter. Hvis ikke kan dronen instruere
               pårørende til å starte hjerte-lunge redning i påvente av ambulanse
-              evt. gi ny dose NARCAN©.
+              eventuelt gi ny dose NARCAN©.
             </p>
           </FadeInBlock>
         </Page>
@@ -325,8 +334,8 @@ class App extends Component {
           <FadeInBlock side="right">
             <p>
               Pasienter som ikke får tilfredsstillende bedring etter endt
-              behandling blir vurdert av ambulansepersonell og evt. Sendt videre
-              til sykehus for videre behandling.
+              behandling blir vurdert av ambulansepersonell og eventuelt sendt
+              videre til sykehus for videre behandling.
             </p>
           </FadeInBlock>
           <FadeInBlock side="left">
