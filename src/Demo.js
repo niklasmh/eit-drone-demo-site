@@ -76,6 +76,18 @@ export default class Demo extends Component {
       ],
       type: 'stroke',
     }
+    this.bounds = {
+      lat1: this.state.stations[0].lat,
+      lng1: this.state.stations[0].lng,
+      lat2: this.state.stations[0].lat,
+      lng2: this.state.stations[0].lng,
+    }
+    for (const { lat, lng } of this.state.stations) {
+      this.bounds.lat1 = Math.min(this.bounds.lat1, lat)
+      this.bounds.lng1 = Math.min(this.bounds.lng1, lng)
+      this.bounds.lat2 = Math.max(this.bounds.lat2, lat)
+      this.bounds.lng2 = Math.max(this.bounds.lng2, lng)
+    }
     this.timeInterval = 100
     this.maxAmbulances = 10
     this.maxDronesPerStation = 3
@@ -122,10 +134,14 @@ export default class Demo extends Component {
   onClick(evt) {
     const lat = evt.latLng.lat()
     const lng = evt.latLng.lng()
-    const position = { lat, lng }
-    this.setState({ ...this.state, selectedPoint: position })
+    this.placeSituation(lat, lng, this.state.type)
+  }
 
-    if (this.state.type === 'stroke') {
+  placeSituation(lat, lng, type) {
+    const position = { lat, lng }
+
+    if (type === 'stroke') {
+      this.setState({ ...this.state, selectedPoint: position, type })
       const DirectionsService = new window.google.maps.DirectionsService()
       DirectionsService.route(
         {
@@ -165,7 +181,7 @@ export default class Demo extends Component {
               totalDistance: path.routes[0].legs[0].distance.value,
               totalDuration: path.routes[0].legs[0].duration.value,
               pointsInPath: path.routes[0].overview_path.length,
-              type: this.state.type,
+              type,
             })
             this.setState({ ...this.state, situations })
           }
@@ -194,9 +210,14 @@ export default class Demo extends Component {
         totalDistance: -1,
         totalDuration: -1,
         pointsInPath: 0,
-        type: this.state.type,
+        type,
       })
-      this.setState({ ...this.state, situations })
+      this.setState({
+        ...this.state,
+        situations,
+        selectedPoint: position,
+        type,
+      })
     }
   }
 
@@ -293,6 +314,27 @@ export default class Demo extends Component {
     this.setState({ ...this.state, type })
   }
 
+  getRandomPosition() {
+    return {
+      lat:
+        this.bounds.lat1 +
+        Math.random() * (this.bounds.lat2 - this.bounds.lat1),
+      lng:
+        this.bounds.lng1 +
+        Math.random() * (this.bounds.lng2 - this.bounds.lng1),
+    }
+  }
+
+  placeStroke() {
+    const { lat, lng } = this.getRandomPosition()
+    this.placeSituation(lat, lng, 'stroke')
+  }
+
+  placeHeroin() {
+    const { lat, lng } = this.getRandomPosition()
+    this.placeSituation(lat, lng, 'heroin')
+  }
+
   render() {
     const markers = this.state.stations.map((e, i) => {
       return <Marker position={e} key={i} defaultIcon={this.stationIcon} />
@@ -383,14 +425,32 @@ export default class Demo extends Component {
     return (
       <div className="Demo">
         <div>
-          <span>
-            Ambulanser ledig:{' '}
+          <div>
+            <b>Ambulanser ledig: </b>
             {this.maxAmbulances -
               this.state.situations.filter(
                 s => ~s.totalDistance && !s.waitForAmbulance,
               ).length}{' '}
             / {this.maxAmbulances}
-          </span>
+          </div>
+          <div>
+            <b>Droner ledig: </b>
+            {this.maxDronesPerStation * this.state.stations.length -
+              this.state.situations.filter(
+                s => ~s.drone.station && !s.waitForAmbulance,
+              ).length}{' '}
+            / {this.maxDronesPerStation * this.state.stations.length}
+          </div>
+          <div className="demo-add">
+            <h3>Legg til situasjoner:</h3>
+            <button onClick={this.placeStroke.bind(this)}>
+              + Hjerteinfarkt
+            </button>
+            <button onClick={this.placeHeroin.bind(this)}>
+              + Heroinoverdose
+            </button>
+          </div>
+          {/*
           <input
             type="radio"
             name="type"
@@ -406,6 +466,7 @@ export default class Demo extends Component {
             onChange={() => this.handleRadioSelect('heroin')}
           />
           <label htmlFor="heroin">Heroinoverdose (Opioidoverdose)</label>
+          */}
         </div>
         <DemoMap
           markers={markers}
