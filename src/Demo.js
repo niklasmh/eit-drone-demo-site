@@ -483,13 +483,13 @@ export default class Demo extends Component {
           containerElement={
             <div
               style={{
-                flex: '1 0 420px',
+                flex: '1 0 240px',
                 display: 'flex',
                 flexDirection: 'column',
               }}
             />
           }
-          mapElement={<div style={{ height: `100%`, flex: '1 0 420px' }} />}
+          mapElement={<div style={{ height: `100%`, flex: '1 0 240px' }} />}
         />
       </div>
     )

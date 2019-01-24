@@ -241,7 +241,7 @@ class App extends Component {
         </Page>
 
         <Page color="white" page="tidslinje-1" refCallback={this.refPage}>
-          <p>Pårørende oppdager en overdose</p>
+          <h2>Pårørende oppdager en overdose</h2>
           <FadeInBlock side="right" title="Symptomer">
             <p>
               Opioidoverdoser kjennetegnes av nedsatt bevissthet og nedsatt.
@@ -282,7 +282,7 @@ class App extends Component {
         </Page>
 
         <Page color="white" page="tidslinje-3" refCallback={this.refPage}>
-          <h1>eDrone ankommer ulykkesstedet</h1>
+          <h2>eDrone ankommer ulykkesstedet</h2>
           <FadeInBlock side="left" title="Kommunikasjonsutstyr og videokamera">
             <p>
               Dronen er utstyrt med videokamera og kommunikasjonsutstyr som kan
@@ -314,7 +314,7 @@ class App extends Component {
         </Page>
 
         <Page color="white" page="tidslinje-4" refCallback={this.refPage}>
-          <h1>Hva skjer videre med pasienten?</h1>
+          <h2>Hva skjer videre med pasienten?</h2>
           <FadeInBlock side="left">
             <p>
               Hva som skjer etter behandling med nesespray avhenger av
