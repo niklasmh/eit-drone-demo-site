@@ -17,7 +17,9 @@ class App extends Component {
     }
     this.pagePositions = {}
     this.pages = {}
+    this.tabs = {}
     this.refPage = this.refPage.bind(this)
+    this.refTab = this.refTab.bind(this)
     this.hasMounted = false
   }
 
@@ -27,6 +29,13 @@ class App extends Component {
       const id = page.getAttribute('page')
       this.pagePositions[id] = top + document.documentElement.scrollTop
       this.pages[id] = page
+    }
+  }
+
+  refTab(tab) {
+    if (tab !== null) {
+      const id = tab.getAttribute('href').slice(1)
+      this.tabs[id] = tab
     }
   }
 
@@ -93,9 +102,10 @@ class App extends Component {
           </p>
         </Page>
 
-        <Tabs>
+        <Tabs scroll={this.tabs[this.state.selected.split('-')[0]]}>
           <Jump
             to="edrone"
+            refCallback={this.refTab}
             selected={this.state.selected === 'edrone'}
             onClick={this.scroll.bind(this)}
           >
@@ -103,6 +113,7 @@ class App extends Component {
           </Jump>
           <Jump
             to="om"
+            refCallback={this.refTab}
             selected={this.state.selected === 'om'}
             onClick={this.scroll.bind(this)}
           >
@@ -110,6 +121,7 @@ class App extends Component {
           </Jump>
           <Jump
             to="tidslinje"
+            refCallback={this.refTab}
             selected={this.state.selected.slice(0, 9) === 'tidslinje'}
             onClick={this.scroll.bind(this)}
           >
@@ -117,6 +129,7 @@ class App extends Component {
           </Jump>
           <Jump
             to="demo"
+            refCallback={this.refTab}
             selected={this.state.selected === 'demo'}
             onClick={this.scroll.bind(this)}
           >
