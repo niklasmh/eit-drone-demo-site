@@ -92,6 +92,10 @@
 }
 
 .Page.tidslinje {
+  background-color: #006ca4;
+}
+
+.Page.tidslinje-1 {
   background-color: #71c9ec;
   background-image: url(/timeline-person.png);
   background-position: center 60%;
@@ -123,5 +127,8 @@
   }
   .Page {
     background-blend-mode: multiply;
+  }
+  .Page[page^='edrone'] {
+    background-position: 75% center;
   }
 }

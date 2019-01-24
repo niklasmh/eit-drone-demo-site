@@ -6,7 +6,7 @@ export default class FadeInBlock extends Component {
   render() {
     const fadeIn = {
       from: 'middle-bottom',
-      to: 'middle-middle',
+      to: 'top-middle',
       direct: true,
       props: {
         '--opacity': {

@@ -425,7 +425,7 @@ export default class Demo extends Component {
     return (
       <div className="Demo">
         <div>
-          <div>
+          <div className="demo-stats">
             <b>Ambulanser ledig: </b>
             {this.maxAmbulances -
               this.state.situations.filter(
@@ -433,7 +433,7 @@ export default class Demo extends Component {
               ).length}{' '}
             / {this.maxAmbulances}
           </div>
-          <div>
+          <div className="demo-stats">
             <b>Droner ledig: </b>
             {this.maxDronesPerStation * this.state.stations.length -
               this.state.situations.filter(

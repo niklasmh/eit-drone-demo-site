@@ -222,8 +222,25 @@ class App extends Component {
         </Page>
 
         <Page color="white" page="tidslinje" refCallback={this.refPage}>
-          <h2 className="no-bottom">eDrone i behandling av</h2>
-          <h1 className="no-top no-bottom">Opioidoverdoser</h1>
+          <h1 className="no-bottom">eDrone i behandling av</h1>
+          <h1 className="no-top no-bottom big">Opioidoverdoser</h1>
+          <p style={{ textAlign: 'justify', fontWeight: '100' }}>
+            Opioider er en gruppe sentralstimulerende stoffer som brukes som
+            smertelindring for en rekke tilstander. Opioider har den
+            bivirkningen at de også gir en følelse av eufori og velvære, og blir
+            over hele verden misbrukt som et rusmiddel. Overdoser er dermed et
+            utbredt problem. En overdose kjennetegnes av nedsatt bevissthet og
+            at pasienten slutter å puste. Dette er en potensielt livstruende
+            tilstand. I USA har det i mange tiår pågått en opioidepedemi og det
+            er i dag større sannsynlighet for å dø av en overdose enn i
+            trafikken. Overdoser behandles i dag med motgiften nalaxon, som
+            enten kan gis som en injeksjon eller som nesespray. Utforsk
+            tidslinjen for å se hvordan eDrone kan brukes i behandlingen av
+            overdoser.
+          </p>
+        </Page>
+
+        <Page color="white" page="tidslinje-1" refCallback={this.refPage}>
           <p>Pårørende oppdager en overdose</p>
           <FadeInBlock side="right" title="Symptomer">
             <p>
