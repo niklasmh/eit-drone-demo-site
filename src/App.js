@@ -176,24 +176,24 @@ class App extends Component {
             <h3>- fremtidens akuttmottak</h3>
             <p>
               Akuttmottak verden over sliter med manglende kapasitet til å
-              håndtere økt etterspørsel etter helsehjelp. Edrone flytter
+              håndtere økt etterspørsel etter helsehjelp. eDrone flytter
               akuttmottaket ut av sykehuset til deg raskt, effektivt og trygt.
             </p>
           </FadeInBlock>
           <FadeInBlock side="left" mode="fill">
             <h2>Allsidig</h2>
             <p>
-              Edrone er konstruert for å kunne behandle en rekke sykdommer og
-              tilstander. Edrone er utstyrt med viktig medisinsk utstyr som gir
+              eDrone er konstruert for å kunne behandle en rekke sykdommer og
+              tilstander. eDrone er utstyrt med viktig medisinsk utstyr som gir
               helsepersonell viktig informasjon om pasientens helsetilstand.
-              Edrone kan brukes til diagnotiskk og behandling av blant annet
+              eDrone kan brukes til diagnotiskk og behandling av blant annet
               hjertestans og overdoser.
             </p>
           </FadeInBlock>
           <FadeInBlock side="left" mode="fill">
             <h2>Rask, effektiv og trygg</h2>
             <p>
-              Edrone kan oppnå hastigheter opp mot 160 km/t. Det betyr at dronen
+              eDrone kan oppnå hastigheter opp mot 160 km/t. Det betyr at dronen
               kan nå deg innen minutter etter du ringt 113.
             </p>
           </FadeInBlock>
@@ -294,28 +294,28 @@ class App extends Component {
           <h2>eDrone ankommer ulykkesstedet</h2>
           <FadeInBlock side="left" title="Kommunikasjonsutstyr og videokamera">
             <p>
-              Dronen er utstyrt med videokamera og kommunikasjonsutstyr som kan
+              eDrone er utstyrt med videokamera og kommunikasjonsutstyr som kan
               overvåke pasienten og veilede de som meldte inn overdosen.
             </p>
           </FadeInBlock>
           <FadeInBlock side="right" title="Vurdering av pasientens tilstand">
             <p>
-              Dronen har med medisinsk utstyr som EKG- måler og pulsokismeter
+              eDrone har med medisinsk utstyr som EKG- måler og pulsokismeter
               som gir viktig info om pasientens tilstand til ambulansen.
             </p>
           </FadeInBlock>
           <FadeInBlock side="left" title="Administrering av motgiften NACRAN©">
             <p>
               Etter at en overdose har blitt konstatert, får pårørende tilgang
-              til NARCAN © fra dronen. NARCAN © er en nesespray som inneholder
-              en motgift som reverserer effekten av opioider. Nesesprayen er
-              enkel i bruk og kan gis av personer som ikke er helsepersonell.
+              til NARCAN© fra eDrone. NARCAN© er en nesespray som inneholder en
+              motgift som reverserer effekten av opioider. Nesesprayen er enkel
+              i bruk og kan gis av personer som ikke er helsepersonell.
             </p>
           </FadeInBlock>
           <FadeInBlock side="right" title="Effekt av motgift">
             <p>
               Nesesprayen virker raskt og flesteparten vil få tilbake
-              respirasjon etter noen minutter. Hvis ikke kan dronen instruere
+              respirasjon etter noen minutter. Hvis ikke kan eDrone instruere
               pårørende til å starte hjerte-lunge redning i påvente av ambulanse
               eventuelt gi ny dose NARCAN©.
             </p>
