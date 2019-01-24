@@ -83,9 +83,31 @@ class App extends Component {
     })
   }
 
+  nextPage(steps) {
+    const pages = Object.keys(this.pages)
+    const currentIndex = pages.indexOf(this.state.selected)
+    const nextIndex = Math.max(0, Math.min(pages.length, currentIndex + steps))
+    this.scroll(pages[nextIndex])
+  }
+
+  handleKeyDown(evt) {
+    switch (evt.keyCode) {
+      case 39: // Right
+        this.nextPage(1)
+        break
+      case 37: // Left
+        this.nextPage(-1)
+        break
+    }
+  }
+
   render() {
     return (
-      <div className="App">
+      <div
+        className="App"
+        tabIndex="-1"
+        onKeyDown={this.handleKeyDown.bind(this)}
+      >
         <Page color="white" page="hjem" refCallback={this.refPage}>
           <div className="logo">
             <h1 className="name">eDrone</h1>
