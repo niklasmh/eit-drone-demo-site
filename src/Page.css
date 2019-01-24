@@ -110,9 +110,18 @@
 }
 .Page.tidslinje-3 {
   background-color: #ffce64;
+  background-image: url(https://news.filehippo.com/wp-content/uploads/2014/10/ambulance-drone.png);
+  background-position: center center;
+  background-size: cover;
+  background-blend-mode: multiply;
+  background-attachment: fixed;
+}
+.Page.Page.tidslinje-3 .FadeInBlock:nth-child(4) {
   background-image: url(/timeline-nesespray.png);
-  background-position: center 80%;
-  background-size: 240px;
+  background-position: 200px center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding-right: 160px;
 }
 .Page.tidslinje-4 {
   background-color: #7acbc5;
@@ -127,6 +136,9 @@
   }
   .Page {
     background-blend-mode: multiply;
+  }
+  .Page.tidslinje-3 {
+    background-position: center 80%, center center;
   }
   .Page[page^='edrone'] {
     background-position: 75% center;
