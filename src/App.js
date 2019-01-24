@@ -173,18 +173,33 @@ class App extends Component {
         </Page>
 
         <Page color="white" page="om" refCallback={this.refPage}>
-          <h2>Menneskene bak</h2>
-          <h3 className="no-bottom">Andrea Lilleeidet Røyland </h3>
+          <h1>Menneskene bak</h1>
+          <h2 style={{ textAlign: 'center' }}>
+            Dette er menneskene som har vært med på å utvikle dette konseptet.
+          </h2>
+          <h3 className="no-bottom" title="Betty Jenny">
+            Andrea Lilleeidet Røyland
+          </h3>
           <p className="no-top">Medisin</p>
-          <h3 className="no-bottom">Ingrid Andrea Legran</h3>
+          <h3 className="no-bottom" title="Joyce Hjørdis">
+            Ingrid Andrea Legran
+          </h3>
           <p className="no-top">Arbeids- og organisasjonspsykologi</p>
-          <h3 className="no-bottom">Nana Aanderaa</h3>
+          <h3 className="no-bottom" title="Kitt Jenny">
+            Nana Aanderaa
+          </h3>
           <p className="no-top">Medisin</p>
-          <h3 className="no-bottom">Niklas Molnes Hole </h3>
+          <h3 className="no-bottom" title="Glenn Terry">
+            Niklas Molnes Hole{' '}
+          </h3>
           <p className="no-top">Informatikk</p>
-          <h3 className="no-bottom">Paul-Alexandre Nordlund</h3>
+          <h3 className="no-bottom" title="Sean Thore">
+            Paul-Alexandre Nordlund
+          </h3>
           <p className="no-top">Medisin</p>
-          <h3 className="no-bottom">Åsmund Heir</h3>
+          <h3 className="no-bottom" title="Cliff Asle">
+            Åsmund Heir
+          </h3>
           <p className="no-top">Industriell økonomi og teknologiledelse</p>
         </Page>
 

@@ -2,6 +2,9 @@
   max-width: 320px;
   margin: 16px;
   flex: 1 0 auto;
+  position: relative;
+  opacity: var(--opacity);
+  will-change: opacity, left, right;
 }
 
 .FadeInBlock:first-of-type {
@@ -16,8 +19,10 @@
 
 .FadeInBlock[side='left'] {
   align-self: flex-start;
+  right: var(--slideIn);
 }
 
 .FadeInBlock[side='right'] {
   align-self: flex-end;
+  left: var(--slideIn);
 }
