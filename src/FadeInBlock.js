@@ -22,8 +22,8 @@ export default class FadeInBlock extends Component {
     return (
       <ReactBasicScroll config={fadeIn}>
         <div className="FadeInBlock" {...this.props}>
-          <h3>{this.props.title}</h3>
-          <p>{this.props.children}</p>
+          {this.props.title ? <h3>{this.props.title}</h3> : null}
+          {this.props.children}
         </div>
       </ReactBasicScroll>
     )

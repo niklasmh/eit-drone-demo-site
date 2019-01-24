@@ -106,7 +106,7 @@ class App extends Component {
           <Jump
             to="edrone"
             refCallback={this.refTab}
-            selected={this.state.selected === 'edrone'}
+            selected={this.state.selected.slice(0, 6) === 'edrone'}
             onClick={this.scroll.bind(this)}
           >
             Hva er eDrone?
@@ -138,7 +138,7 @@ class App extends Component {
         </Tabs>
 
         <Page color="white" page="edrone" refCallback={this.refPage}>
-          <FadeInBlock side="left">
+          <FadeInBlock side="left" mode="fill">
             <h1>Møt eDrone</h1>
             <h3>- fremtidens akuttmottak</h3>
             <p>
@@ -147,10 +147,7 @@ class App extends Component {
               akuttmottaket ut av sykehuset til deg raskt, effektivt og trygt.
             </p>
           </FadeInBlock>
-        </Page>
-
-        <Page color="white" page="edrone-2" refCallback={this.refPage}>
-          <FadeInBlock side="left">
+          <FadeInBlock side="left" mode="fill">
             <h2>Allsidig</h2>
             <p>
               Edrone er konstruert for å kunne behandle en rekke sykdommer og
@@ -160,10 +157,7 @@ class App extends Component {
               hjertestans og overdoser.
             </p>
           </FadeInBlock>
-        </Page>
-
-        <Page color="white" page="edrone-2" refCallback={this.refPage}>
-          <FadeInBlock side="left">
+          <FadeInBlock side="left" mode="fill">
             <h2>Rask, effektiv og trygg</h2>
             <p>
               Edrone kan oppnå hastigheter opp mot 160 km/t. Det betyr at dronen
@@ -208,14 +202,16 @@ class App extends Component {
           <h1 className="no-top no-bottom">Opioidoverdoser</h1>
           <p>Pårørende oppdager en overdose</p>
           <FadeInBlock side="right" title="Symptomer">
-            Opioidoverdoser kjennetegnes av nedsatt bevissthet og nedsatt.
-            respirasjon
+            <p>
+              Opioidoverdoser kjennetegnes av nedsatt bevissthet og nedsatt.
+              respirasjon
+            </p>
           </FadeInBlock>
           <FadeInBlock side="left" title="En livstruende tilstand">
-            Ved en overdose med opioider slutter pasienten å puste.
+            <p>Ved en overdose med opioider slutter pasienten å puste.</p>
           </FadeInBlock>
           <FadeInBlock side="right" title="263 overdosedødsfall i året">
-            I Norge dør det i snitt 263 personer av overdoser hvert år.
+            <p>I Norge dør det i snitt 263 personer av overdoser hvert år.</p>
           </FadeInBlock>
         </Page>
 
@@ -223,61 +219,81 @@ class App extends Component {
           <h2 className="no-bottom">Pårørende ringer</h2>
           <h1 className="no-top no-bottom big">113</h1>
           <FadeInBlock side="left" title="Dronepilot">
-            En dronepilot styrer eDrone etter instruks fra AMK og flyr dronen
-            til rett sted.
+            <p>
+              En dronepilot styrer eDrone etter instruks fra AMK og flyr dronen
+              til rett sted.
+            </p>
           </FadeInBlock>
           <FadeInBlock side="right" title="Responstid på to minutter">
-            eDrone kan fly med en maks hastighet på 160 km/t og nå ulykkesstedet
-            på rundt to minutter. Vanlig responstid med ambulanser ved overdoser
-            er under åtte minutter i storbyene.
+            <p>
+              eDrone kan fly med en maks hastighet på 160 km/t og nå
+              ulykkesstedet på rundt to minutter. Vanlig responstid med
+              ambulanser ved overdoser er under åtte minutter i storbyene.
+            </p>
           </FadeInBlock>
           <FadeInBlock side="left" title="Droneplassering">
-            En eDrone per apotek er mer enn nok til å dekke hele Trondheim.
-            Ambulansen drifter og apoteket kan fylle på med nødvendig utstyr og
-            medikamenter.
+            <p>
+              En eDrone per apotek er mer enn nok til å dekke hele Trondheim.
+              Ambulansen drifter og apoteket kan fylle på med nødvendig utstyr
+              og medikamenter.
+            </p>
           </FadeInBlock>
         </Page>
 
         <Page color="white" page="tidslinje-3" refCallback={this.refPage}>
           <h1>eDrone ankommer ulykkesstedet</h1>
           <FadeInBlock side="left" title="Kommunikasjonsutstyr og videokamera">
-            Dronen er utstyrt med videokamera og kommunikasjonsutstyr som kan
-            overvåke pasienten og veilede de som meldte inn overdosen.
+            <p>
+              Dronen er utstyrt med videokamera og kommunikasjonsutstyr som kan
+              overvåke pasienten og veilede de som meldte inn overdosen.
+            </p>
           </FadeInBlock>
           <FadeInBlock side="right" title="Vurdering av pasientens tilstand">
-            Dronen har med medisinsk utstyr som EKG- måler og pulsokismeter som
-            gir viktig info om pasientens tilstand til ambulansen.
+            <p>
+              Dronen har med medisinsk utstyr som EKG- måler og pulsokismeter
+              som gir viktig info om pasientens tilstand til ambulansen.
+            </p>
           </FadeInBlock>
           <FadeInBlock side="left" title="Administrering av motgiften NACRAN©">
-            Etter at en overdose har blitt konstatert, får pårørende tilgang til
-            NARCAN © fra dronen. NARCAN © er en nesespray som inneholder en
-            motgift som reverserer effekten av opioider. Nesesprayen er enkel i
-            bruk og kan gis av personer som ikke er helsepersonell.
+            <p>
+              Etter at en overdose har blitt konstatert, får pårørende tilgang
+              til NARCAN © fra dronen. NARCAN © er en nesespray som inneholder
+              en motgift som reverserer effekten av opioider. Nesesprayen er
+              enkel i bruk og kan gis av personer som ikke er helsepersonell.
+            </p>
           </FadeInBlock>
           <FadeInBlock side="right" title="Effekt av motgift">
-            Nesesprayen virker raskt og flesteparten vil få tilbake respirasjon
-            etter noen minutter. Hvis ikke kan dronen instruere pårørende til å
-            starte hjerte-lunge redning i påvente av ambulanse evt. gi ny dose
-            NARCAN©.
+            <p>
+              Nesesprayen virker raskt og flesteparten vil få tilbake
+              respirasjon etter noen minutter. Hvis ikke kan dronen instruere
+              pårørende til å starte hjerte-lunge redning i påvente av ambulanse
+              evt. gi ny dose NARCAN©.
+            </p>
           </FadeInBlock>
         </Page>
 
         <Page color="white" page="tidslinje-4" refCallback={this.refPage}>
           <h1>Hva skjer videre med pasienten?</h1>
           <FadeInBlock side="left">
-            Hva som skjer etter behandling med nesespray avhenger av pasientens
-            tilstand etter endt behandling. Hvis pasienten ikke viser tegn til
-            bedring, sendes en ambulanse til stedet.
+            <p>
+              Hva som skjer etter behandling med nesespray avhenger av
+              pasientens tilstand etter endt behandling. Hvis pasienten ikke
+              viser tegn til bedring, sendes en ambulanse til stedet.
+            </p>
           </FadeInBlock>
           <FadeInBlock side="right">
-            Pasienter som ikke får tilfredsstillende bedring etter endt
-            behandling blir vurdert av ambulansepersonell og evt. Sendt videre
-            til sykehus for videre behandling.
+            <p>
+              Pasienter som ikke får tilfredsstillende bedring etter endt
+              behandling blir vurdert av ambulansepersonell og evt. Sendt videre
+              til sykehus for videre behandling.
+            </p>
           </FadeInBlock>
           <FadeInBlock side="left">
-            Friske pasienter blir overvåket av dronen i to timer. Alle får
-            tilbud om oppfølging av spesialisthelsetjeneste i etterkant av en
-            overdose.
+            <p>
+              Friske pasienter blir overvåket av dronen i to timer. Alle får
+              tilbud om oppfølging av spesialisthelsetjeneste i etterkant av en
+              overdose.
+            </p>
           </FadeInBlock>
         </Page>
 
