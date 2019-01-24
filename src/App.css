@@ -7,6 +7,11 @@
   font-size: 6em;
   color: #363636;
 }
+@media (max-width: 960px) {
+  .logo > .name {
+    font-size: 12vw;
+  }
+}
 .logo > .image {
   width: 20vw;
   max-width: 200px;

@@ -5,10 +5,12 @@
   position: sticky;
   top: 0;
   bottom: 0;
+  overflow-x: auto;
 }
 
 .Tabs > a {
   display: flex;
+  padding: 0 1em;
   flex: 1 0 auto;
   height: 60px;
   flex-direction: column;

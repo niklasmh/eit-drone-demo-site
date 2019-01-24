@@ -11,6 +11,12 @@
   background-repeat: no-repeat;
 }
 
+@media (max-width: 960px) {
+  .Page {
+    padding: 2em;
+  }
+}
+
 .Page:first-child {
   margin-bottom: -60px;
   padding-bottom: calc(60px + 10vh);
