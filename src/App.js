@@ -194,7 +194,7 @@ class App extends Component {
             <h2>Rask, effektiv og trygg</h2>
             <p>
               eDrone kan oppnå hastigheter opp mot 160 km/t. Det betyr at dronen
-              kan nå deg innen minutter etter du ringt 113.
+              kan nå deg innen minutter etter du har ringt 113.
             </p>
           </FadeInBlock>
         </Page>
